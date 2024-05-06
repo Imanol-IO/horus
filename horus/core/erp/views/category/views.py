@@ -3,10 +3,13 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from core.erp.models import Category, Product
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
+from core.erp.forms import CategoryForm
 
 # vistas basadas en funciones
 def category_list(request):
@@ -39,4 +42,15 @@ class CategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado de Categorias'
         #context['object_list'] = Product.objects.all()
+        return context
+
+class CategoryCreateView(CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'category/create.html'
+    success_url = reverse_lazy('erp:category_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Creacion una categoria'
         return context
