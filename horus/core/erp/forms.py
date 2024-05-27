@@ -1,6 +1,7 @@
 from django.forms import *
 
 from core.erp.models import Category
+from core.erp.models import Client
 
 
 class CategoryForm(ModelForm):
@@ -29,3 +30,26 @@ class CategoryForm(ModelForm):
             )
         }
         
+class ClientForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # for form in self.visible_fields():
+        #     form.field.widget.attrs['class'] = 'col-md-5'
+        #     form.field.widget.attrs['autocomplete'] = 'off'
+        self.fields['nombre'].widget.attrs['autofocus'] = True
+
+    class Meta:
+        model = Client
+        fields = '__all__'
+        widgets = {
+            'nombre': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese un nombre',
+                }
+            ),
+            'apellidoP': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese un nombre',  
+                }
+            )
+        }

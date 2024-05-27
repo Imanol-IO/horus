@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.forms import model_to_dict
 
-from core.erp.choices import gender_choices
+from core.erp.choices import tipo_Cliente
 
 
 class Category(models.Model):
@@ -39,15 +39,29 @@ class Product(models.Model):
 
 
 class Client(models.Model):
-    names = models.CharField(max_length=150, verbose_name='Nombres')
-    surnames = models.CharField(max_length=150, verbose_name='Apellidos')
-    dni = models.CharField(max_length=10, unique=True, verbose_name='Dni')
-    birthday = models.DateField(default=datetime.now, verbose_name='Fecha de nacimiento')
-    address = models.CharField(max_length=150, null=True, blank=True, verbose_name='Dirección')
-    sexo = models.CharField(max_length=10, choices=gender_choices, default='male', verbose_name='Sexo')
+    nombre = models.CharField(max_length=150, verbose_name='Nombre')
+    apellidoP = models.CharField(max_length=150, verbose_name='Apellido Paterno')
+    apellidoM = models.CharField(max_length=150, verbose_name='Apellido Materno')  
+    email = models.CharField(max_length=150, verbose_name='Correo Electronico')
+    rfc = models.CharField(max_length=13, verbose_name='RFC')
+    curp = models.CharField(max_length=18, verbose_name='CURP')
+    telefono = models.PositiveIntegerField(verbose_name='Telefono')
+    tipoCliente = models.CharField(max_length=20, choices=tipo_Cliente, blank=True, default='o',help_text='Book availability',)
+    Cer = models.FileField(null=True)
+    Key = models.FileField(null=True)
+    passphrase = models.CharField(max_length=150,verbose_name='Passphrase')
+    calle = models.CharField(max_length=150,verbose_name='Calle')
+    numeroExterior = models.PositiveIntegerField(verbose_name='Numero Exterior')
+    numeroInterior = models.PositiveIntegerField(verbose_name='Numero Interior')
+    colonia = models.CharField(max_length=150,verbose_name='Colonia')
+    localidad = models.CharField(max_length=150,verbose_name='Localidad')
+    municipio = models.CharField(max_length=150,verbose_name='Municipio')
+    estado = models.CharField(max_length=150,verbose_name='Estado')
+    pais = models.CharField(max_length=150,verbose_name='pais')
+    codigoPostal = models.CharField(max_length=150,verbose_name='Codigo Postal')
 
     def __str__(self):
-        return self.names
+        return self.nombre
 
     class Meta:
         verbose_name = 'Cliente'

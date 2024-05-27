@@ -20,3 +20,14 @@ POSTGRESSQL = {
         "PORT": "5432",
     }
 }
+
+MySQL = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'horus',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',  # O la dirección IP de tu servidor MySQL
+        'PORT': '3306',  # El puerto predeterminado de MySQL es 3306
+    }
+}

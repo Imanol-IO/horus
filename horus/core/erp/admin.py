@@ -4,3 +4,4 @@ from core.erp.models import *
 
 # Register your models here.
 admin.site.register(Category)
+admin.site.register(Client)
