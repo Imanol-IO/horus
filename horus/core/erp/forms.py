@@ -1,4 +1,5 @@
 from django.forms import *
+from django import forms
 
 from core.erp.models import Category
 from core.erp.models import Client
@@ -51,5 +52,6 @@ class ClientForm(ModelForm):
                 attrs={
                     'placeholder': 'Ingrese un nombre',  
                 }
-            )
+            ),
+            'tipoReceptor': forms.HiddenInput(),  # Ocultar este campo en el formulario
         }

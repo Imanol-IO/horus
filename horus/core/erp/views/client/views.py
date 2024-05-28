@@ -40,7 +40,7 @@ class ClientCreateView(CreateView):
     model = Client
     form_class = ClientForm
     template_name = 'client/create.html'
-    success_url = reverse_lazy('erp:category_list')
+    success_url = reverse_lazy('erp:client_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

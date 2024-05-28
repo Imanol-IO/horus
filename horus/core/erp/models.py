@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.forms import model_to_dict
 
-from core.erp.choices import tipo_Cliente
+from core.erp.choices import tipo_Cliente, tipo_Receptor
 
 
 class Category(models.Model):
@@ -43,22 +43,23 @@ class Client(models.Model):
     apellidoP = models.CharField(max_length=150, verbose_name='Apellido Paterno')
     apellidoM = models.CharField(max_length=150, verbose_name='Apellido Materno')  
     email = models.CharField(max_length=150, verbose_name='Correo Electronico')
-    rfc = models.CharField(max_length=13, verbose_name='RFC')
-    curp = models.CharField(max_length=18, verbose_name='CURP')
-    telefono = models.PositiveIntegerField(verbose_name='Telefono')
-    tipoCliente = models.CharField(max_length=20, choices=tipo_Cliente, blank=True, default='o',help_text='Book availability',)
-    Cer = models.FileField(null=True)
-    Key = models.FileField(null=True)
-    passphrase = models.CharField(max_length=150,verbose_name='Passphrase')
-    calle = models.CharField(max_length=150,verbose_name='Calle')
-    numeroExterior = models.PositiveIntegerField(verbose_name='Numero Exterior')
-    numeroInterior = models.PositiveIntegerField(verbose_name='Numero Interior')
-    colonia = models.CharField(max_length=150,verbose_name='Colonia')
-    localidad = models.CharField(max_length=150,verbose_name='Localidad')
-    municipio = models.CharField(max_length=150,verbose_name='Municipio')
-    estado = models.CharField(max_length=150,verbose_name='Estado')
+    rfc = models.CharField(max_length=13, verbose_name='RFC', blank=True)
+    curp = models.CharField(max_length=18, verbose_name='CURP', blank=True)
+    telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
+    tipoCliente = models.CharField(max_length=20, choices=tipo_Cliente, blank=True, default='o',help_text='Book availability')
+    Cer = models.FileField(null=True, blank=True)
+    Key = models.FileField(null=True, blank=True)
+    passphrase = models.CharField(max_length=150,verbose_name='Passphrase', blank=True)
+    calle = models.CharField(max_length=150,verbose_name='Calle', blank=True)
+    numeroExterior = models.PositiveIntegerField(verbose_name='Numero Exterior', blank=True, null=True)
+    numeroInterior = models.PositiveIntegerField(verbose_name='Numero Interior', blank=True, null=True)
+    colonia = models.CharField(max_length=150,verbose_name='Colonia', blank=True)
+    localidad = models.CharField(max_length=150,verbose_name='Localidad', blank=True)
+    municipio = models.CharField(max_length=150,verbose_name='Municipio', blank=True)
+    estado = models.CharField(max_length=150,verbose_name='Estado', blank=True)
     pais = models.CharField(max_length=150,verbose_name='pais')
-    codigoPostal = models.CharField(max_length=150,verbose_name='Codigo Postal')
+    codigoPostal = models.CharField(max_length=150,verbose_name='Codigo Postal', blank=True)
+    tipoReceptor = models.CharField(max_length=15, choices=tipo_Receptor, blank=True, default='moral',help_text='Book availability')
 
     def __str__(self):
         return self.nombre
