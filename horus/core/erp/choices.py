@@ -18,3 +18,5 @@ estatus = (
     ('Activo', 'Activo'),
     ('Inactivo', 'Inactivo')
 )
+
+## comentario prueba 
