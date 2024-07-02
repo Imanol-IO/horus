@@ -1,9 +1,10 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 from django.forms import model_to_dict
 
-from core.erp.choices import tipo_Cliente, tipo_Receptor
+from core.erp.choices import tipo_Cliente, tipo_Receptor, estatus
 
 
 class Category(models.Model):
@@ -46,7 +47,7 @@ class Client(models.Model):
     rfc = models.CharField(max_length=13, verbose_name='RFC', blank=True)
     curp = models.CharField(max_length=18, verbose_name='CURP', blank=True)
     telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
-    tipoCliente = models.CharField(max_length=20, choices=tipo_Cliente, blank=True, default='o',help_text='Book availability')
+    tipoCliente = models.CharField(max_length=20, choices=tipo_Cliente, blank=True, default='o')
     Cer = models.FileField(null=True, blank=True)
     Key = models.FileField(null=True, blank=True)
     passphrase = models.CharField(max_length=150,verbose_name='Passphrase', blank=True)
@@ -59,7 +60,7 @@ class Client(models.Model):
     estado = models.CharField(max_length=150,verbose_name='Estado', blank=True)
     pais = models.CharField(max_length=150,verbose_name='pais')
     codigoPostal = models.CharField(max_length=150,verbose_name='Codigo Postal', blank=True)
-    tipoReceptor = models.CharField(max_length=15, choices=tipo_Receptor, blank=True, default='moral',help_text='Book availability')
+    tipoReceptor = models.CharField(max_length=15, choices=tipo_Receptor, blank=True, default='moral')
 
     def __str__(self):
         return self.nombre
@@ -67,6 +68,19 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
+        ordering = ['id']
+
+class User_Cliente(models.Model):
+    idCliente = models.ForeignKey(Client, on_delete=models.CASCADE)
+    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    timbres = models.IntegerField(verbose_name='Timbres', default=20)
+    estatus = models.CharField(choices=estatus, default='Activo')
+
+    def __str__(self):
+        return self.idCliente.nombre
+    class Meta:
+        verbose_name = 'User_Cliente'
+        verbose_name_plural = 'User_Clientes'
         ordering = ['id']
 
 

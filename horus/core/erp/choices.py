@@ -13,3 +13,8 @@ tipo_Receptor = (
         ('fisica','Persona Fisica'),
         ('extranjero','Extranjero'),
     )
+
+estatus = (
+    ('Activo', 'Activo'),
+    ('Inactivo', 'Inactivo')
+)

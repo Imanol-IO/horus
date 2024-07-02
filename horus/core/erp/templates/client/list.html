@@ -2,21 +2,25 @@
 
 {% block columns %}
 <tr>
-    <th scope="col" style="width: 10%;">Nro</th>
-    <th scope="col" style="width: 25%;">Nombre</th>
-    <th scope="col" style="width: 25%;">Correo Electronico</th>
-    <th scope="col" style="width: 25%;">RFC</th>
-    <th scope="col" style="width: 15%;">Opciones</th>
+    <th scope="col" style="width: 5%;">Nro</th>
+    <th scope="col" style="width: 15%;">Nombre</th>
+    <th scope="col" style="width: 20%;">Correo Electronico</th>
+    <th scope="col" style="width: 20%;">RFC</th>
+    <th scope="col" style="width: 15%;">Timbres</th>
+    <th scope="col" style="width: 15%;">Estatus</th>
+    <th scope="col" style="width: 10%;">Opciones</th>
 </tr>
 {% endblock %}
 
 {% block rows %}
-    {% for c in object_list %}
+    {% for c in client_list %}
     <tr>
         <td>{{ c.id }}</td>
-        <td>{{ c.nombre }}</td>
-        <td>{{ c.email }}</td>
-        <td>{{ c.rfc }}</td>
+        <td>{{ c.idCliente.nombre }}</td>
+        <td>{{ c.idCliente.email }}</td>
+        <td>{{ c.idCliente.rfc }}</td>
+        <td>{{ c.timbres }}</td>
+        <td>{{ c.estatus }}</td>
 
         <td>
             <button type="button" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></button>

@@ -4,7 +4,7 @@ from django.db.models.query import QuerySet
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from core.erp.models import Client
+from core.erp.models import Client, User_Cliente
 from django.views.generic import ListView, CreateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
@@ -16,8 +16,8 @@ class ClientListView(ListView):
     model = Client
     template_name = 'client/list.html'
 
-    #def get_queryset(self):
-    #    return Category.objects.filter(name__startswith='L')
+    def get_queryset(self):
+       return Client.objects.filter(name__startswith='L')
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
@@ -33,7 +33,8 @@ class ClientListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado de Clientes'
-        #context['object_list'] = Product.objects.all()
+        context['client_list'] = Client.objects.all()
+        context['client_list'] = User_Cliente.objects.all()
         return context
 
 class ClientCreateView(CreateView):
