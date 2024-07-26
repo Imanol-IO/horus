@@ -69,7 +69,7 @@ class Client(models.Model):
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
         ordering = ['id']
-
+#prueba rebase
 class User_Cliente(models.Model):
     idCliente = models.ForeignKey(Client, on_delete=models.CASCADE)
     idUser = models.ForeignKey(User, on_delete=models.CASCADE)
